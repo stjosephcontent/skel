@@ -1,0 +1,22 @@
+#!/bin/sh
+
+#   prevent user from commiting unencrypted private files
+
+source .git/crypt.sh
+
+#   iterate and validate
+for fyle in ${private_files[@]}
+do
+    if ! file_is_already_encrypted $fyle; then
+        not_encrypted+=("$fyle")
+    fi
+done
+if [ ${#not_encrypted[@]} -gt 0 ]; then
+    #   fail :( prevent the commit
+    echo "The following files are not encrypted:"
+    echo ${not_encrypted[@]} | tr ' ' '\n'
+    exit 1
+else
+    #   success! all private files are encrypted. allow the commit
+    exit 0
+fi

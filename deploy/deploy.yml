@@ -1,0 +1,7 @@
+
+---
+
+- name: "deploy to {{target}}"
+  hosts: "{{target}}"
+  roles:
+    - example 

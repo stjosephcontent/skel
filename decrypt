@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#   decrypt all files that have been encrypted with ansible-vault
+
+source .git/crypt.sh
+
+for fyle in ${private_files[@]}
+do
+    if file_is_already_encrypted $fyle; then
+        target_files+=("$fyle")
+    fi
+done
+
+if [ ${#target_files[@]} -gt 0 ]; then
+    echo 'decrypting these files:'
+    echo ${target_files[@]} | tr ' ' '\n'
+    ansible-vault --vault-password-file=$vault_password_file decrypt ${target_files[@]}
+else
+    echo 'there were no files to decrypt'
+fi
