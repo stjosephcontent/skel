@@ -1,0 +1,12 @@
+#!/bin/sh
+
+#   match a branch name of the form ABC-123-some-description
+#   where "ABC-123" is the Jira ticket number
+
+branch=$(git symbolic-ref --short HEAD)
+if [[ "$branch" =~ ^([A-Z]+-[0-9])+(.*)$ ]]; then
+    ticket=${BASH_REMATCH[1]}
+    echo $ticket >> $1
+    echo >> $1
+fi
+
