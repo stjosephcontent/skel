@@ -1,5 +1,5 @@
 # skel
-This skeleton repo was created to help get you started on your deployment. 
+This skeleton repo was created as a basis for new SJC projects. Using it allows you to be future-compatibable with ops practices at SJC, even if you don't think you need them now. Skel is cognizant of Orchestra, SJC's docker wrapper, and Shelbot, SJC's robot devOps helper. Whenever possible, new repos should be created using *skel*.
 
 <img src="http://i1015.photobucket.com/albums/af274/thirteen-black-cats/skeleton.png" width="243" />
 
@@ -33,7 +33,7 @@ Use [ansible best practices](http://docs.ansible.com/ansible/playbooks_roles.htm
 # Files
 ## a
 
-** ./a {script} {target} **
+*./a {script} {target}*
 
 Runs a script found in the `deploy` folder and sets the target to a group defined in `deploy/inventories/aws`.
 
@@ -47,7 +47,7 @@ Run `deploy/setup.yml` with *target* set to "stage":
 
 ## fleet
 
-** ./fleet {target} {command} **
+*./fleet {target} {command}*
 
 Runs ad-hoc commands against some or all of the hosts in `deploy/inventories/aws`.
 
