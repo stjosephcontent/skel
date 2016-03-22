@@ -1,0 +1,24 @@
+{
+    "orchestra": {
+        "version": "1.0.2"
+    },
+    "project": {
+        "name": "Example",
+        "slug": "example"
+    },
+    "name": "Websiite",
+    "slug": "site",
+    "services": {
+        "nginx": {
+            "ambassador": true,
+            "ports": [80],
+            "volumes": [ "./services/nginx/src:/var/www/html", "./services/nginx/logz:/var/log/nginx" ],
+            "links": [
+                "postgres"
+            ]
+        },
+        "postgres": {
+            "volumes": [ "./services/postgres/data:/data" ]
+        }
+    }
+}
