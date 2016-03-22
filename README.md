@@ -60,26 +60,33 @@ Ask production servers what their hostnames are
 Ask all servers what their nginx conf files look like
 `$ ./fleet all 'cat /etc/nginx/sites-enabled/*'`
 
-Notice above that we used single quotes to avoid shell expansion happening on our machine as opposed to the taget machine
+Notice above that we used single quotes to avoid shell expansion happening on our machine, but allowing it to happen on the target machine.
 
 ## listcrypt
-This command lists all files that are or should be encrypted, according to `./.git/crypt.sh`. It must be run from the root of the repo.
+This command lists all files that are or should be encrypted, according to `.git/crypt.sh`. It must be run from the root of the repo.
 `$ ./listcrypt`
 
 ## encrypt
-This command encrypts any files that should be and are not encrypted, according to `./.git/crypt.sh`.
+This command encrypts any files that should be and are not encrypted, according to `.git/crypt.sh`.
 `$ ./encrypt`
 
 ## decrypt
-This command decrypts all encrypted files that `./.git/crypt.sh` thinks should be encrypted.
+This command decrypts all encrypted files that `.git/crypt.sh` thinks should be encrypted.
 `$ ./decrypt`
 
 ## ansible.cfg
-This file allows dicts to be composed from several var files in ansible, avoiding unpleasant clobbering. You must include it at the root of your repo.
+This file allows dicts to be composed from several var files in ansible, avoiding unpleasant clobbering. I write deployment scripts assuming this is the case, so you should include it at the root of your repo if you want deployment scripts to be well behaved.
 
 ### deploy/inventories/aws
 
-This file lists all your target hosts. Many apps will only have two: *stage* and *prod*. `./a` understands this as a target, and refers to a host group. You should always target a host group, even if that group only consists of one host.
+This file lists all your target hosts. Many apps will only have two groups: *stage* and *prod*, each with only one host. `./a`. You should always target a host group (instead of directly targetting a host), even if that group only consists of one host.
+
+example of good:
+`./a deploy stage # targetting a host group`
+
+example of bad:
+`./a deploy example-host-01 # targetting a host directly`
+
 
 ### deploy/private/.gitignore
 
