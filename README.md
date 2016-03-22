@@ -53,6 +53,9 @@ This command encrypts any files that should be and are not encrypted, according 
 ## ./decrypt
 This command decrypts all encrypted files that `./.git/crypt.sh` thinks should be encrypted.
 
+##  ansible.cfg
+This file allows dicts to be composes from several var files in ansible, avoiding unpleasant clobbering.
+
 ## /deploy
 
 This folder contains all ansible data and logic called by `./a`, `./fleet`, and `./facts`
