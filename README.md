@@ -7,10 +7,13 @@ This skeleton repo was created to help get you started on your deployment.
 
 ## /git
 
-In the /git folder, you can place these files in the appropriate root .git folders. 
+In the /git folder in this repo, you can place these files in the appropriate target repo `./.git` locations. 
 
-crypt.sh - TODO: Description goes here
-pre-commit & prepare-commit-msg - these will run before your commit in git.
+`crypt.sh` - This file includes crypt logic for ./listcrypt, ./encrypt, and ./decrypt. It decides what files should be encrypted, and makes the corresponding helper files work.
+
+`pre-commit` - This makes use of `crypt.sh` and disallows a dev from commiting sensitive info
+
+`prepare-commit-msg` - will automatically parse out the Jira ticket number from an appropriately named branch
 
 ## ./a {script} {target}
 
@@ -42,11 +45,39 @@ Ask all servers what their nginx conf files look like
 Notice above that we used single quotes to avoid shell expansion happening on our machine as opposed to the taget machine
 
 ## ./listcrypt
-TODO: Description goes here
+This command lists all files that are or should be encrypted, according to `./.git/crypt.sh`
+
+## ./encrypt
+This command encrypts any files that should be and are not encrypted, according to `./.git/crypt.sh`
+
+## ./decrypt
+This command decrypts all encrypted files that `./.git/crypt.sh` thinks should be encrypted.
 
 ## /deploy
 
-This folder contains the ansible script. TODO: more descript.
+This folder contains all ansible data and logic called by `./a`, `./fleet`, and `./facts`
 
-All files are to be included. Place new deployments in roles. 
+### deploy/group_vars
+
+This files are automatically loaded, depending on what group you have targed in `./a` (ex: `./a deploy stage` will load group_vars/stage/*.yml). The "all" directory is always loaded
+
+### deploy/inventories/aws
+
+This file lists all your target hosts. Many apps will only have two: *stage* and *prod*. ./a understands this as a target, and refers to a host group. You should always target a host group, even if that group only consists of one host. While the inventory file is called aws, you may inlude non-amazon hosts.
+
+### deploy/private/.gitignore
+
+This file is required to ensure that vault_pass.txt never gets commited to VCS. It is, however, acceptable to cmmit vault_pass.txt.gpg or vault_pass.txt.asc
+
+### deploy/private/vault_pass.txt
+
+Used by ansible-vault to encrpyt and decrypt sensitive info
+
+### deploy/private/vault_pass.txt.gpg
+
+If you are part of the ops group, you will be able to decrpyt this file. If you are creating the repo, you will be creating vault_pass.txt and this file.
+
+### deploy/roles/*
+
+Use [ansible best practices](http://docs.ansible.com/ansible/playbooks_roles.html) for organizing your deployment code into roles.
 

@@ -1,0 +1,8 @@
+---
+
+app:
+  name: Example App
+  description: It is an example app for showcase skel and ansible deployment
+  repo:
+    remotes:
+      origin: git@github.com:stjosephcontent/example

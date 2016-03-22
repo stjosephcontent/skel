@@ -1,0 +1,5 @@
+---
+
+app:
+  root: /var/www/domains/example/prod
+

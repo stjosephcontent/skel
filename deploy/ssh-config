@@ -1,2 +1,6 @@
-host example-host
-    HostName example.com
+host stage-example
+    HostName stage.example.com
+    User shelbot
+host prod-example
+    HostName prod.example.com
+    User shelbot
