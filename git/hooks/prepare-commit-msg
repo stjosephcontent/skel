@@ -9,4 +9,3 @@ if [[ "$branch" =~ ^([A-Z]+-[0-9])+(.*)$ ]]; then
     echo $ticket >> $1
     echo >> $1
 fi
-
