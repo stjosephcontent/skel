@@ -19,9 +19,11 @@ This folder contains files you should place in the `.git` folder in your target 
 People's public keys go here. This is to allow ops engineers a central repository for public keys. For deployment scripts to work, SSH+RSA authentication is needed.
 
 ## deploy/**
+
 This folder contains all ansible data and logic called by `./a`, `./fleet`, and `./facts`. Use it to tweak and write deployment scripts using ansible.
 
 ### deploy/group_vars/{{group}}/*
+
 This files are automatically loaded, depending on what group you have targed in `./a` (ex: `./a deploy stage` will load group_vars/stage/*.yml). The "all" directory is always loaded
 
 ### deploy/roles/*
@@ -63,18 +65,22 @@ Ask all servers what their nginx conf files look like
 Notice above that we used single quotes to avoid shell expansion happening on our machine, but allowing it to happen on the target machine.
 
 ## listcrypt
+
 This command lists all files that are or should be encrypted, according to `.git/crypt.sh`. It must be run from the root of the repo.
 `$ ./listcrypt`
 
 ## encrypt
+
 This command encrypts any files that should be and are not encrypted, according to `.git/crypt.sh`.
 `$ ./encrypt`
 
 ## decrypt
+
 This command decrypts all encrypted files that `.git/crypt.sh` thinks should be encrypted.
 `$ ./decrypt`
 
 ## ansible.cfg
+
 This file allows dicts to be composed from several var files in ansible, avoiding unpleasant clobbering. I write deployment scripts assuming this is the case, so you should include it at the root of your repo if you want deployment scripts to be well behaved.
 
 ### deploy/inventories/aws
