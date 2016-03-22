@@ -1,7 +1,7 @@
 # skel
 This skeleton repo was created to help get you started on your deployment. 
 
-<img src="http://i1015.photobucket.com/albums/af274/thirteen-black-cats/skeleton.png" />
+<img src="http://i1015.photobucket.com/albums/af274/thirteen-black-cats/skeleton.png" width="243" />
 
 # Files
 
