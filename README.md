@@ -3,8 +3,10 @@ This skeleton repo was created as a basis for new SJC projects. Using it allows 
 
 <img src="http://i1015.photobucket.com/albums/af274/thirteen-black-cats/skeleton.png" width="243" />
 
-# Folders
-## git/**
+## Folders
+
+### git/**
+
 
 This folder contains files you should place in the `.git` folder in your target repo.
 
@@ -14,11 +16,11 @@ This folder contains files you should place in the `.git` folder in your target 
 
 `.git/hooks/prepare-commit-msg` - will automatically parse out the Jira ticket number from an appropriately named branch, and add it to your commit message. This allows you to view all relevant commit messages in a given Jira ticket. The logic could be modified to look for assembla ticket numbers too.
 
-## keys/{{person}}/*
+### keys/{{person}}/*
 
 People's public keys go here. This is to allow ops engineers a central repository for public keys. For deployment scripts to work, SSH+RSA authentication is needed.
 
-## deploy/**
+### deploy/**
 
 This folder contains all ansible data and logic called by `./a`, `./fleet`, and `./facts`. Use it to tweak and write deployment scripts using ansible.
 
@@ -30,14 +32,14 @@ This files are automatically loaded, depending on what group you have targed in 
 
 Use [ansible best practices](http://docs.ansible.com/ansible/playbooks_roles.html) for organizing your deployment code into roles.
 
-# Files
-## a
+## Files
+### a
 
 *./a {script} {target}*
 
 Runs a script found in the `deploy` folder and sets the target to a group defined in `deploy/inventories/aws`.
 
-### Example commands
+#### Example commands
 
 Run `deploy/deploy.yml` with *target* set to "prod": 
 `$ ./a deploy prod`
@@ -45,13 +47,13 @@ Run `deploy/deploy.yml` with *target* set to "prod":
 Run `deploy/setup.yml` with *target* set to "stage": 
 `$ ./a setup stage`
 
-## fleet
+### fleet
 
 *./fleet {target} {command}*
 
 Runs ad-hoc commands against some or all of the hosts in `deploy/inventories/aws`.
 
-### Example commands
+#### Example commands
 
 Ask all servers in the "stage" group what operating system they are
 `$ ./fleet stage uname -a`
@@ -64,22 +66,22 @@ Ask all servers what their nginx conf files look like
 
 Notice above that we used single quotes to avoid shell expansion happening on our machine, but allowing it to happen on the target machine.
 
-## listcrypt
+### listcrypt
 
 This command lists all files that are or should be encrypted, according to `.git/crypt.sh`. It must be run from the root of the repo.
 `$ ./listcrypt`
 
-## encrypt
+### encrypt
 
 This command encrypts any files that should be and are not encrypted, according to `.git/crypt.sh`.
 `$ ./encrypt`
 
-## decrypt
+### decrypt
 
 This command decrypts all encrypted files that `.git/crypt.sh` thinks should be encrypted.
 `$ ./decrypt`
 
-## ansible.cfg
+### ansible.cfg
 
 This file allows dicts to be composed from several var files in ansible, avoiding unpleasant clobbering. I write deployment scripts assuming this is the case, so you should include it at the root of your repo if you want deployment scripts to be well behaved.
 
