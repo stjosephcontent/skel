@@ -1,5 +1,14 @@
+#   deploy folder uses ansible-vault
 deploy/ !filter !diff
+
+#   anything called private
 *.private.* filter=git-crypt diff=git-crypt
 private.* filter=git-crypt diff=git-crypt
 *.private filter=git-crypt diff=git-crypt
 private/** filter=git-crypt diff=git-crypt
+
+#   common names for private keys
+id_rsa filter=git-crypt diff=git-crypt
+id_ed25519 filter=git-crypt diff=git-crypt
+id_ecdsa filter=git-crypt diff=git-crypt
+id_dsa filter=git-crypt diff=git-crypt
