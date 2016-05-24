@@ -2,4 +2,4 @@
 private.* filter=git-crypt diff=git-crypt
 *.private filter=git-crypt diff=git-crypt
 private/* filter=git-crypt diff=git-crypt
-
+private.credentials.yml filter=git-crypt diff=git-crypt
