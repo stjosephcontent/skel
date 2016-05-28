@@ -6,11 +6,11 @@
 #   where "034" is the Assembla ticket number
 
 branch=$(git symbolic-ref --short HEAD)
-if [[ "$branch" =~ ^([A-Z]+-[0-9])+(.*)$ ]]; then
+if [[ "$branch" =~ ^([A-Z]+-[0-9]+)+(.*)$ ]]; then
     ticket=${BASH_REMATCH[1]}
     echo $ticket >> $1
     echo >> $1
-elif [[ "$branch" =~ ^([0-9])+(.*)$ ]]; then
+elif [[ "$branch" =~ ^([0-9]+)-(.*)$ ]]; then
     ticket=${BASH_REMATCH[1]}
     echo 're #'$ticket >> $1
     echo >> $1
