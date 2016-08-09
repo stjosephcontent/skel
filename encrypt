@@ -20,3 +20,4 @@ if [ ${#target_files[@]} -gt 0 ]; then
     ansible-vault --vault-password-file=$vault_password_file encrypt ${target_files[@]}
 else
     echo 'there were no files to encrypt'
+fi

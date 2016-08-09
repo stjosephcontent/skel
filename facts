@@ -3,7 +3,7 @@
 #   get all the facts from the host(s)
 
 one=ansible
-hosts=$1
-two="-i $PWD/deploy/inventories/aws $hosts -m setup"
+target=${1:-all}
+two="-i $PWD/deploy/all.inventory $target -m setup"
 echo $one $two
 exec $one $two

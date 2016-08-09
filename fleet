@@ -3,9 +3,9 @@
 #   run ad-hoc shell commands against sets of hosts on AWS
 
 one=ansible
-hosts=$1
+target=${1:-all}
 shift
-two="-i $PWD/deploy/inventories/aws $hosts -m shell -a"
+two="-i $PWD/deploy/all.inventory $target -m shell -a"
 three=$@
 echo $one $two "$three"
 exec $one $two "$three"

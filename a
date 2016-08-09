@@ -1,11 +1,16 @@
 #!/bin/bash
 
-#   run an ansible playbook on a set of AWS hosts (stage, prod, or all)
+#   run an ansible playbook on a set of AWS hosts (ex: stage, prod, or all)
 
-one="ansible-playbook"
-two="-i $PWD/deploy/inventories/aws --vault-password-file deploy/private/vault_pass.txt"
-scriptname=$1
+#   args
 target=${2:-all}
+scriptname=$1
+
+#   state
 currentbranch="$(git rev-parse --abbrev-ref @)"
+
+#   commands
+one="ansible-playbook"
+two="-i $PWD/deploy/$target.inventory --vault-password-file deploy/private/vault_pass.txt"
 echo $one $two "deploy/$scriptname.yml" --extra-vars "{target: \"$target\", currentbranch: \"$currentbranch\", operator: \"$USER\", operator_machine: \"$(hostname)\"}"
 exec $one $two "deploy/$scriptname.yml" --extra-vars "{target: \"$target\", currentbranch: \"$currentbranch\", operator: \"$USER\", operator_machine: \"$(hostname)\"}"

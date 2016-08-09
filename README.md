@@ -1,8 +1,16 @@
 # skel
-This skeleton repo was created as a basis for new SJC projects. Using it allows you to be future-compatibable with ops practices at SJC, even if you don't think you need them now. Skel is cognizant of Orchestra, SJC's docker wrapper, and Shelbot, SJC's robot devOps helper. Whenever possible, new repos should be created using *skel*.
 
-<img src="http://i1015.photobucket.com/albums/af274/thirteen-black-cats/skeleton.png" width="243" />
+These are files that are used when a developer runs:
 
+```
+$ sjc init
+```
+
+files in the folder `git` should end up in the user's `.git` directory. Files in the folder `sjc` should end up in `.sjc`. These are meant to enable developers to spin up, manipulate, and deploy their app using orchestra.
+
+![skeleton](http://i1015.photobucket.com/albums/af274/thirteen-black-cats/skeleton.png)
+
+Note: Everything below is slightly out of date.
 ## Folders
 
 ### git/**
@@ -15,10 +23,6 @@ This folder contains files you should place in the `.git` folder in your target 
 `.git/hooks/pre-commit` - This makes use of `crypt.sh` and prevents you from commiting sensitive info if it's not encrypted.
 
 `.git/hooks/prepare-commit-msg` - will automatically parse out the Jira ticket number from an appropriately named branch, and add it to your commit message. This allows you to view all relevant commit messages in a given Jira ticket. The logic could be modified to look for assembla ticket numbers too.
-
-### keys/{{person}}/*
-
-People's public keys go here. This is to allow ops engineers a central repository for public keys. For deployment scripts to work, SSH+RSA authentication is needed.
 
 ### deploy/**
 
