@@ -1,9 +1,0 @@
-#!/bin/bash
-
-#   get all the facts from the host(s)
-
-one=ansible
-target=${1:-all}
-two="-i $PWD/deploy/all.inventory $target -m setup"
-echo $one $two
-exec $one $two

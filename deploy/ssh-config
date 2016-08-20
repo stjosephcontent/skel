@@ -1,6 +1,0 @@
-host stage-example
-    HostName stage.example.com
-    User shelbot
-host prod-example
-    HostName prod.example.com
-    User shelbot

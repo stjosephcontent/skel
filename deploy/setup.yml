@@ -1,7 +1,0 @@
----
-
-- name: set up the machine
-  hosts: "{{ target }}"
-  remote_user: root
-  roles:
-    - shelbot
