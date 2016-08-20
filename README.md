@@ -6,11 +6,15 @@ These are files that are used when a developer runs:
 $ sjc init
 ```
 
+At the time of this writing, skel was used for a variety of things and did not have a clear purpose. For example, it was used to house public RSA keys, git hooks, and ansible boilerplate.
+
+Now it should have a very specific purpose: It should be what gets downloaded and transfered to a user's computer when they run `sjc init`, and it should enable functionality appropriate for _developers_.
+
 files in the folder `git` should end up in the user's `.git` directory. Files in the folder `sjc` should end up in `.sjc`. These are meant to enable developers to spin up, manipulate, and deploy their app using orchestra.
 
 ![skeleton](http://i1015.photobucket.com/albums/af274/thirteen-black-cats/skeleton.png)
 
-Note: Everything below is slightly out of date.
+> Note: Everything below is slightly out of date.
 ## Folders
 
 ### git/**
